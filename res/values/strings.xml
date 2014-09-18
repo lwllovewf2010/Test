@@ -1,0 +1,12 @@
+<resources>
+
+    <string name="app_name">Test</string>
+
+	<string-array
+	    name="string_ids"
+	    >
+	    <item>GSensor</item>
+	    <item>touch</item>
+
+	</string-array>
+</resources>

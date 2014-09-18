@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="20.0dip" 
+        android:id="@+id/gsensor_tv_info" 
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" 
+        android:layout_alignParentTop="true"
+        />
+     <TextView android:textSize="20.0dip" 
+        android:id="@+id/gsensor_xyz" 
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" 
+        android:layout_below="@+id/gsensor_tv_info"/>
+     <ImageView 
+        android:id="@+id/gsensor_image" 
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/gsensor_xyz"
+        android:src="@drawable/gsensor_x_2" 
+         />
+ 
+    <LinearLayout android:orientation="vertical" 
+        android:layout_width="fill_parent" 
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/gsensor_bt_ok"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.57"
+            android:text="Success"
+            android:textSize="25.0dip" />
+
+        <Button android:textSize="25.0dip" 
+            android:id="@+id/gsensor_bt_failed" 
+            android:layout_width="fill_parent" 
+            android:layout_height="wrap_content" 
+            android:text="Failed" 
+            android:layout_weight="0.2" />
+    </LinearLayout>
+    
+</RelativeLayout>
