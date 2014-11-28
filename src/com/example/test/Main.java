@@ -1,5 +1,9 @@
 package com.example.test;
 
+import java.util.ArrayList;
+
+import com.example.test.mathod.PrintArray;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,11 +15,13 @@ import android.widget.ListView;
 public class Main extends Activity {
 
 	ListView listView = null;
-
+	ArrayList<String> list = new ArrayList<String>();;
 	
 	Class[] classes = {
 			GSensor.class,
 			TouchTestActivity.class,
+			FaceDetect.class,
+			PrintArray.class
 	};
 	
 	
@@ -25,8 +31,12 @@ public class Main extends Activity {
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.main_activity);
 	
+		
+		for(Class cls:classes){
+			list.add(cls.getSimpleName());
+		}
 		listView = (ListView)this.findViewById(R.id.list);
-		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.string_ids, android.R.layout.simple_list_item_1);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1 , list);
 		
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(clicklistener);

@@ -8,9 +8,6 @@
 package com.example.test;
 
 public final class R {
-    public static final class array {
-        public static final int string_ids=0x7f050000;
-    }
     public static final class attr {
     }
     public static final class drawable {
@@ -22,17 +19,22 @@ public final class R {
         public static final int tw_divider_horizontal_dark=0x7f020005;
     }
     public static final class id {
-        public static final int gsensor_bt_failed=0x7f070004;
-        public static final int gsensor_bt_ok=0x7f070003;
-        public static final int gsensor_image=0x7f070002;
-        public static final int gsensor_tv_info=0x7f070000;
-        public static final int gsensor_xyz=0x7f070001;
-        public static final int list=0x7f070005;
+        public static final int gsensor_bt_failed=0x7f060006;
+        public static final int gsensor_bt_ok=0x7f060005;
+        public static final int gsensor_image=0x7f060004;
+        public static final int gsensor_tv_info=0x7f060002;
+        public static final int gsensor_xyz=0x7f060003;
+        public static final int list=0x7f060007;
+        public static final int print_info=0x7f060008;
+        public static final int restart=0x7f060001;
+        public static final int state=0x7f060000;
     }
     public static final class layout {
-        public static final int gsensor=0x7f030000;
-        public static final int main_activity=0x7f030001;
-        public static final int touch_test_pass=0x7f030002;
+        public static final int face=0x7f030000;
+        public static final int gsensor=0x7f030001;
+        public static final int main_activity=0x7f030002;
+        public static final int print_arry=0x7f030003;
+        public static final int touch_test_pass=0x7f030004;
     }
     public static final class string {
         public static final int app_name=0x7f040000;
@@ -59,10 +61,10 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f060000;
+        public static final int AppBaseTheme=0x7f050000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f060001;
+        public static final int AppTheme=0x7f050001;
     }
 }
