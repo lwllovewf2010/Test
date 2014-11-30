@@ -2,8 +2,6 @@ package com.example.test;
 
 import java.util.ArrayList;
 
-import com.example.test.mathod.PrintArray;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +9,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.example.test.info.LanguageInfo;
+import com.example.test.info.PackageInfoActivity;
+import com.example.test.mathod.PrintArray;
+import com.example.test.tool.DPIvPX;
 
 public class Main extends Activity {
 
@@ -21,7 +24,10 @@ public class Main extends Activity {
 			GSensor.class,
 			TouchTestActivity.class,
 			FaceDetect.class,
-			PrintArray.class
+			PrintArray.class,
+			LanguageInfo.class,
+			PackageInfoActivity.class,
+			DPIvPX.class
 	};
 	
 	
