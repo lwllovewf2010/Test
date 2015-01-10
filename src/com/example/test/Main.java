@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.test.info.LanguageInfo;
-import com.example.test.info.PackageInfoActivity;
+import com.example.test.info.PackageListActivity;
 import com.example.test.mathod.PrintArray;
 import com.example.test.tool.DPIvPX;
 
@@ -26,7 +26,7 @@ public class Main extends Activity {
 			FaceDetect.class,
 			PrintArray.class,
 			LanguageInfo.class,
-			PackageInfoActivity.class,
+			PackageListActivity.class,
 			DPIvPX.class
 	};
 	

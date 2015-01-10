@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="tw_action_bar_back">#016679</color>
+    <color name="tw_button_back">#0199ac</color>
+    <color name="tw_action_bar_back_press">#0000ff</color>
+    <color name="cyan">#00ffff</color>
+</resources>
