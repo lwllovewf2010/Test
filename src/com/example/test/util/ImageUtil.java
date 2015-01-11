@@ -2,12 +2,16 @@ package com.example.test.util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 import android.app.Activity;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.PixelFormat;
@@ -82,9 +86,16 @@ public class ImageUtil {
 	public static Bitmap drawableToBitmap(Drawable drawable) {
 		int width = drawable.getIntrinsicWidth();
 		int height = drawable.getIntrinsicHeight();
-		Bitmap bitmap = Bitmap.createBitmap(width, height, drawable
-				.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
-				: Bitmap.Config.RGB_565);
+		
+		if(width <= 0 || height <= 0){
+			return null;
+		}
+		
+//		Bitmap bitmap = Bitmap.createBitmap(width, height, drawable
+//				.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
+//				: Bitmap.Config.RGB_565);
+
+		Bitmap bitmap = Bitmap.createBitmap(width, height,Bitmap.Config.ARGB_8888);
 		Canvas canvas = new Canvas(bitmap);
 		drawable.setBounds(0, 0, width, height);
 		drawable.draw(canvas);
@@ -92,6 +103,29 @@ public class ImageUtil {
 
 	}
 
+	public static void saveBitmap(Bitmap mBitmap, File file) throws IOException {
+
+		file.createNewFile();
+		FileOutputStream fOut = null;
+		try {
+			fOut = new FileOutputStream(file);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		mBitmap.compress(Bitmap.CompressFormat.PNG, 100, fOut);
+		try {
+			fOut.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		try {
+			fOut.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	 
+	 
 	  public void DrawableToFile(Integer PicID, String filename ) { 
 		  
 	  }

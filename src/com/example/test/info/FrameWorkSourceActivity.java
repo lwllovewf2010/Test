@@ -2,14 +2,15 @@ package com.example.test.info;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.AssetManager;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.Resources.NotFoundException;
 import android.graphics.Bitmap;
@@ -19,6 +20,7 @@ import android.graphics.drawable.NinePatchDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -27,9 +29,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,11 +38,11 @@ import com.example.test.util.ImageItem;
 import com.example.test.util.ImageUtil;
 import com.example.test.view.ImageItemView;
 
-public class PackageSourceActivity extends Activity implements OnClickListener, OnItemClickListener {
+public class FrameWorkSourceActivity extends Activity implements OnClickListener, OnItemClickListener {
 	private final static String TAG = "PackageSourceActivity";  
 	private final static String ROOT_DIR = "PullRes/";  
 	private final static int DRAWABLE_FIRST = 0x7f020000; 
-	ApplicationInfo mApp;
+
 	PackageManager pm;
 	Button allButton;
 	Button pullButton;
@@ -66,19 +65,12 @@ public class PackageSourceActivity extends Activity implements OnClickListener, 
 		pm = getPackageManager();
 		items = new ArrayList<ImageItem>();
 		
-		Intent intent = this.getIntent();
-		mApp = intent.getParcelableExtra("AppInfo");
-//		mApp = this.getApplicationInfo();
-		this.setTitle(mApp.loadLabel(pm));
+		this.setTitle("Framework Res");
 		this.setTitleColor(Color.CYAN);
 		
-		try {
-			mRes = pm.getResourcesForApplication(mApp);
-			
-		} catch (NameNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+		mRes = loadRes("/system/framework/framework-res.apk");
+	
 		
 		allButton=(Button) this.findViewById(R.id.select_all);
 		allButton.setOnClickListener(this);
@@ -96,6 +88,33 @@ public class PackageSourceActivity extends Activity implements OnClickListener, 
 
 	}
 
+	 private Resources loadRes(String apkPath)
+	    {
+	        try 
+	        {
+	            AssetManager assetMgr = AssetManager.class.newInstance(); 
+	            Method mtdAddAssetPath = AssetManager.class
+	                    .getDeclaredMethod("addAssetPath", String.class);
+	            mtdAddAssetPath.invoke(assetMgr, apkPath);
+	            
+	            Constructor<?> ctorResources = Resources.class
+	                    .getConstructor(AssetManager.class, DisplayMetrics.class, 
+	                            Configuration.class);
+	            
+	            Resources res = (Resources) ctorResources.newInstance(assetMgr,
+	                    this.getResources().getDisplayMetrics(), 
+	                    this.getResources().getConfiguration());
+	            
+	            return res;
+	        }
+	        catch (Throwable t)
+	        {
+	            t.printStackTrace();
+	        }
+	        
+	        return null;
+	    }
+	 
 	private void init(){
 		
 		int i=0;
@@ -154,7 +173,7 @@ public class PackageSourceActivity extends Activity implements OnClickListener, 
 		
 		File card =Environment.getExternalStorageDirectory();
 		
-		appDir = new File(card, ROOT_DIR+mApp.packageName);
+		appDir = new File(card, ROOT_DIR+"framework");
 		
 		
 		Log.d(TAG,"appDir:"+appDir.getAbsolutePath());

@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.test.info.FrameWorkSourceActivity;
 import com.example.test.info.LanguageInfo;
 import com.example.test.info.PackageListActivity;
 import com.example.test.mathod.PrintArray;
@@ -27,7 +28,9 @@ public class Main extends Activity {
 			PrintArray.class,
 			LanguageInfo.class,
 			PackageListActivity.class,
+			FrameWorkSourceActivity.class,
 			DPIvPX.class
+			
 	};
 	
 	

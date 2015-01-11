@@ -22,14 +22,27 @@
             android:layout_width="fill_parent"
             android:layout_height="35dp"
             android:background="#019965" >
-
-            <TextView
-                android:id="@+id/image_info"
-                android:layout_width="wrap_content"
+			<LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="left"
-                android:padding="5dp"
-                android:textSize="16sp" />
+			    >
+	            <TextView
+	                android:id="@+id/image_info"
+	                android:layout_width="0dp"
+	                android:layout_height="wrap_content"
+	                android:layout_weight="1"
+	                android:gravity="center"
+	                android:padding="5dp"
+	                android:textSize="16sp" />
+	            <TextView
+	                android:id="@+id/select_info"
+	                android:layout_width="0dp"
+	                android:layout_height="wrap_content"
+	                android:layout_weight="1"
+	                android:gravity="center"
+	                android:padding="5dp"
+	                android:textSize="16sp" />
+	        </LinearLayout>
         </FrameLayout>
 
         <LinearLayout
