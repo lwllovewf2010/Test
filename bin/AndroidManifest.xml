@@ -11,6 +11,8 @@
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>  
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>  
 	<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
+  
+    <uses-permission android:name="android.permission.DISABLE_STATUS_BAR"/> 	
 	<uses-feature android:name="android.hardware.camera" />
 	
     <application
@@ -44,11 +46,20 @@
         </activity>   
         
          <activity
-            android:name="com.example.test.TouchTestActivity"
+            android:name="com.example.test.touch.TSP_Bound_Grid_Mode"
             android:label="@string/app_name" 
 			>
         </activity>
-        
+        <activity
+            android:name="com.example.test.touch.TSP_Dot_Mode"
+            android:label="@string/app_name" 
+			>
+        </activity>
+        <activity
+            android:name="com.example.test.touch.TSP_Grid_Mode"
+            android:label="@string/app_name" 
+			>
+        </activity>                
          <activity
             android:name="com.example.test.mathod.PrintArray"
             android:label="@string/app_name" 

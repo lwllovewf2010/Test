@@ -7,4 +7,4 @@
     android:gravity="center"
     android:text="pass"
     android:textColor="#ff000000"
-    android:textSize="100.0sp" />
+    android:textSize="100.0dp" />

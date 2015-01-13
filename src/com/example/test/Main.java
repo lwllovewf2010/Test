@@ -15,6 +15,9 @@ import com.example.test.info.LanguageInfo;
 import com.example.test.info.PackageListActivity;
 import com.example.test.mathod.PrintArray;
 import com.example.test.tool.DPIvPX;
+import com.example.test.touch.TSP_Bound_Grid_Mode;
+import com.example.test.touch.TSP_Dot_Mode;
+import com.example.test.touch.TSP_Grid_Mode;
 
 public class Main extends Activity {
 
@@ -23,7 +26,9 @@ public class Main extends Activity {
 	
 	Class[] classes = {
 			GSensor.class,
-			TouchTestActivity.class,
+			TSP_Bound_Grid_Mode.class,
+			TSP_Dot_Mode.class,
+			TSP_Grid_Mode.class,
 			FaceDetect.class,
 			PrintArray.class,
 			LanguageInfo.class,

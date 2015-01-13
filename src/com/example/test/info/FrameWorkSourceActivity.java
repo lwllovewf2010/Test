@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -39,9 +40,9 @@ import com.example.test.util.ImageUtil;
 import com.example.test.view.ImageItemView;
 
 public class FrameWorkSourceActivity extends Activity implements OnClickListener, OnItemClickListener {
-	private final static String TAG = "PackageSourceActivity";  
+	private final static String TAG = "FrameWorkSourceActivity";  
 	private final static String ROOT_DIR = "PullRes/";  
-	private final static int DRAWABLE_FIRST = 0x7f020000; 
+	private final static int DRAWABLE_FIRST = 0x01080000; 
 
 	PackageManager pm;
 	Button allButton;
@@ -69,8 +70,8 @@ public class FrameWorkSourceActivity extends Activity implements OnClickListener
 		this.setTitleColor(Color.CYAN);
 		
 
-		mRes = loadRes("/system/framework/framework-res.apk");
-	
+		mRes = Resources.getSystem();
+		
 		
 		allButton=(Button) this.findViewById(R.id.select_all);
 		allButton.setOnClickListener(this);
@@ -119,10 +120,12 @@ public class FrameWorkSourceActivity extends Activity implements OnClickListener
 		
 		int i=0;
 		for( i = 0; i < 0x10000;i++){
+			Drawable draw =null;
+			String name = null;
 			try{
-				Drawable draw = mRes.getDrawable(DRAWABLE_FIRST+i);
-				String name = mRes.getResourceName(DRAWABLE_FIRST+i);
-				
+				name = mRes.getResourceName(DRAWABLE_FIRST+i);
+				draw = mRes.getDrawable(DRAWABLE_FIRST+i);
+
 				if(name != null && !name.isEmpty()){
 					int start = name.indexOf("/");
 					name = name.substring(start+1);
@@ -139,9 +142,19 @@ public class FrameWorkSourceActivity extends Activity implements OnClickListener
 				ImageItem item = new ImageItem(DRAWABLE_FIRST+i,draw,name);
 				items.add(item);
 			}catch(NotFoundException e){
+				if(name == null){
+					name = "null";
+				}
+				Log.d(TAG,"Drawable NotFoundException:"+name+" id:"+
+						Integer.toHexString(DRAWABLE_FIRST+i));
+				continue;
+			}
+			
+			if(draw == null){
 				break;
 			}
-
+			
+			
 		}	
 		imageInfo.setText("Total Number:"+ items.size());
 		

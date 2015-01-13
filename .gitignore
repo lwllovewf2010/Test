@@ -5,8 +5,9 @@
 *.pydevproject
 .project
 .metadata
-bin/
-tmp/
+.bin/
+.gen/
+.tmp/
 *.tmp
 *.bak
 *.swp
@@ -31,8 +32,7 @@ local.properties
 #################
 ## Eclipse android
 #################
-.gen/
-.bin/
+
 
 #################
 ## Visual Studio
