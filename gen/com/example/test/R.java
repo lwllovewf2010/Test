@@ -36,20 +36,20 @@ public final class R {
         public static final int app_pull=0x7f070017;
         public static final int app_stop=0x7f070014;
         public static final int app_uninstall=0x7f070015;
-        public static final int bt_pull=0x7f070025;
+        public static final int bt_pull=0x7f070026;
         public static final int component_activity=0x7f07001e;
         public static final int component_container=0x7f07001d;
         public static final int component_control=0x7f07001c;
         public static final int component_other=0x7f07001f;
         public static final int component_title=0x7f07001b;
         public static final int count_text=0x7f070020;
-        public static final int custom_title=0x7f070026;
+        public static final int custom_title=0x7f070027;
         public static final int gsensor_bt_failed=0x7f070007;
         public static final int gsensor_bt_ok=0x7f070006;
         public static final int gsensor_image=0x7f070005;
         public static final int gsensor_tv_info=0x7f070003;
         public static final int gsensor_xyz=0x7f070004;
-        public static final int icon=0x7f070027;
+        public static final int icon=0x7f070028;
         public static final int id_icon=0x7f070009;
         public static final int id_name=0x7f07000a;
         public static final int id_select=0x7f070008;
@@ -60,6 +60,7 @@ public final class R {
         public static final int iv_name=0x7f07000d;
         public static final int iv_start=0x7f07000c;
         public static final int list=0x7f070010;
+        public static final int next_page=0x7f070025;
         public static final int package_name=0x7f070012;
         public static final int package_size=0x7f070013;
         public static final int permission=0x7f07001a;
@@ -71,7 +72,7 @@ public final class R {
         public static final int select_all=0x7f070024;
         public static final int select_info=0x7f070023;
         public static final int state=0x7f070001;
-        public static final int title=0x7f070028;
+        public static final int title=0x7f070029;
         public static final int tv_name=0x7f07000f;
     }
     public static final class layout {

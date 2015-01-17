@@ -99,11 +99,9 @@ public class PackageSourceActivity extends Activity implements OnClickListener, 
 	private void init(){
 		
 		int i=0;
-		for( i = 0; i < 0x10000;i++){
+		for( i = 0x0; i < 0x1000;i++){
 			try{
-				Drawable draw = mRes.getDrawable(DRAWABLE_FIRST+i);
 				String name = mRes.getResourceName(DRAWABLE_FIRST+i);
-				
 				if(name != null && !name.isEmpty()){
 					int start = name.indexOf("/");
 					name = name.substring(start+1);
@@ -111,16 +109,11 @@ public class PackageSourceActivity extends Activity implements OnClickListener, 
 					name = Integer.toHexString(DRAWABLE_FIRST+i);
 				}
 				
-				if(draw instanceof NinePatchDrawable){
-					name = name+".9.png";
-				}else{
-					name = name+".png";
-				}
 				
-				ImageItem item = new ImageItem(DRAWABLE_FIRST+i,draw,name);
+				ImageItem item = new ImageItem(DRAWABLE_FIRST+i,null,name);
 				items.add(item);
 			}catch(NotFoundException e){
-				break;
+				continue;
 			}
 
 		}	
@@ -174,9 +167,15 @@ public class PackageSourceActivity extends Activity implements OnClickListener, 
 		
 		for(ImageItem data:items){
 			if(data.isSelect()){
-				
-				saveImage(data.getDrawable(),
-						data.getName());
+				Drawable draw= data.getDrawable();
+				if(draw == null){
+					try{
+						draw = mRes.getDrawable(data.getid());
+					} catch (NotFoundException e) {
+						continue;
+					}
+				}
+				saveImage(draw, data.getName());
 			}
 		}
 		
@@ -184,8 +183,11 @@ public class PackageSourceActivity extends Activity implements OnClickListener, 
 	}
 	
 	private void saveImage(Drawable drawable, String  name){
-		Log.d(TAG,"save image:" + name);
-		
+//		Log.d(TAG,"save image:" + name);
+		if(drawable==null){
+			Log.w(TAG,"save image:" + name+" is null");
+			return;
+		}
 		Bitmap bitmap;
 		bitmap = ImageUtil.drawableToBitmap(drawable);
 		
@@ -293,14 +295,26 @@ public class PackageSourceActivity extends Activity implements OnClickListener, 
 		public View getView(int position, View convertView, ViewGroup parent) {
 			
 			ImageItemView view;
-			
+			ImageItem item = getItem(position);
 			if (convertView == null) {
 				view = (ImageItemView) View.inflate(getApplicationContext(),
 						R.layout.image_item, null);
 			}else{
 				view = (ImageItemView) convertView;
 			}
-			view.setData(getItem(position));
+			view.setName(item.getName());
+			Drawable draw =  item.getDrawable();
+			if(draw == null){
+				try{
+					draw = mRes.getDrawable(item.getid());
+					view.setIcon(draw);
+				} catch (NotFoundException e) {
+					
+				}
+			}else{
+				view.setIcon(draw);
+			}
+			view.setSelect(item.isSelect());
 			return view;
 		}
 

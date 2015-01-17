@@ -1,10 +1,13 @@
 package com.example.test.info;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import android.app.ListActivity;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,14 +25,27 @@ public class PackageListActivity extends ListActivity implements OnItemClickList
 	private AppAdapter mAdapter;
 	private ListView mListView;
 	private TextView mFooterView;
-	
+	private PackageManager pm;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.package_list_activity);
+		pm = getPackageManager();
 		
 		mAppList = getPackageManager().getInstalledApplications(0);
+		
+		Collections.sort(mAppList, new Comparator<ApplicationInfo>() {  
+
+			@Override
+			public int compare(ApplicationInfo lhs, ApplicationInfo rhs) {
+				// TODO Auto-generated method stub
+				String a = lhs.loadLabel(pm).toString();
+				String b = rhs.loadLabel(pm).toString();
+				return a.compareTo(b);
+			}  
+	       });  
+		
 		mListView = this.getListView();
 		
 		mFooterView = (TextView) this.findViewById(R.id.count_text);
@@ -38,7 +54,7 @@ public class PackageListActivity extends ListActivity implements OnItemClickList
 		mAdapter = new AppAdapter();
 		mListView.setAdapter(mAdapter);
 		mListView.setOnItemClickListener(this);
-
+	
 		
 		
 	}

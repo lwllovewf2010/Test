@@ -1,16 +1,18 @@
 package com.example.test.util;
 
+import java.lang.ref.SoftReference;
+
 import android.graphics.drawable.Drawable;
 
 public class ImageItem {
 	int Id;
 	String mName;
-	Drawable mDrawable;
+	SoftReference<Drawable> mDrawable;
 	boolean selected=false;
 	
 	public ImageItem(int id,Drawable drawable,String name){	
 		Id = id;
-		mDrawable = drawable;
+		mDrawable = new SoftReference<Drawable>(drawable);
 		mName = name;
 	}
 	
@@ -23,7 +25,7 @@ public class ImageItem {
 	
 	public void setDrawable(Drawable drawable){
 		
-		mDrawable = drawable;
+		mDrawable = new SoftReference<Drawable>(drawable);
 		
 	}
 
@@ -42,7 +44,7 @@ public class ImageItem {
 	}
 	
 	public Drawable getDrawable(){
-		return mDrawable;
+		return mDrawable.get();
 	}
 	
 	public boolean isSelect(){

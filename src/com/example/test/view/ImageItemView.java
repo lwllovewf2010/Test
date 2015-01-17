@@ -1,6 +1,7 @@
 package com.example.test.view;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -8,15 +9,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.test.R;
-import com.example.test.util.ImageItem;
 
 public class ImageItemView extends FrameLayout {
 	
-	ImageItem item;
 	ImageView iconView;
 	TextView  nameView;
 	View      selectView;
-	
 	public ImageItemView(Context context) {
 		this(context, null);
 		// TODO Auto-generated constructor stub
@@ -39,20 +37,15 @@ public class ImageItemView extends FrameLayout {
 		
 	}
 	
-	public void  setData(ImageItem data){
-		item = data;
-		iconView.setImageDrawable(item.getDrawable());
-		nameView.setText(item.getName());
-		
-		if(item.isSelect()){
-			selectView.setVisibility(View.VISIBLE);
-		}else{
-			selectView.setVisibility(View.GONE);
-		}
-	}
 
+	public void setName(String name){
+		nameView.setText(name);
+	}
+	
+	public void setIcon(Drawable draw){
+		iconView.setImageDrawable(draw);
+	}
 	public void setSelect(boolean selected){
-		item.setSeleted(selected);
 		if(selected){
 			selectView.setVisibility(View.VISIBLE);
 		}else{
