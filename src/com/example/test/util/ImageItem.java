@@ -27,6 +27,7 @@ public class ImageItem {
 		
 		mDrawable = new SoftReference<Drawable>(drawable);
 		
+		
 	}
 
 	public void setSeleted(boolean select){

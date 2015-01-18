@@ -5,16 +5,22 @@
 
     <uses-sdk
         android:minSdkVersion="19"
-        android:targetSdkVersion="19" />  
-	<uses-permission android:name="android.permission.CAMERA" ></uses-permission> 
-	<uses-permission android:name="android.permission.GET_PACKAGE_SIZE"></uses-permission>  
-	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>  
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>  
-	<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
-  
-    <uses-permission android:name="android.permission.DISABLE_STATUS_BAR"/> 	
-	<uses-feature android:name="android.hardware.camera" />
-	
+        android:targetSdkVersion="19" />
+
+    <uses-permission android:name="android.permission.CAMERA" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.DISABLE_STATUS_BAR" />
+
+    <uses-feature android:name="android.hardware.camera" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -23,87 +29,69 @@
         <activity
             android:name="com.example.test.Main"
             android:label="@string/app_name"
-            android:screenOrientation="portrait" 
-			>
- 
-        </activity> 
-         
-        <activity
-            android:name="com.example.test.FaceDetect"
-            android:label="@string/app_name" >
- 
-        </activity>          
-        <activity
-            android:name="com.example.test.GSensor"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait" 
-			>
-    
-        </activity>   
-        
-         <activity
-            android:name="com.example.test.touch.TSP_Bound_Grid_Mode"
-            android:label="@string/app_name" 
-			>
-        </activity>
-        <activity
-            android:name="com.example.test.touch.TSP_Dot_Mode"
-            android:label="@string/app_name" 
-			>
-        </activity>
-        <activity
-            android:name="com.example.test.touch.TSP_Grid_Mode"
-            android:label="@string/app_name" 
-			>
-        </activity>                
-         <activity
-            android:name="com.example.test.mathod.PrintArray"
-            android:label="@string/app_name" 
-			>
-        </activity>        
-         <activity
-            android:name="com.example.test.info.LanguageInfo"
-            android:label="@string/app_name" 
-			>
-        </activity>  
-         <activity
-            android:name="com.example.test.info.PackageListActivity"
-            android:label="@string/app_name" 
-			>
-        </activity> 
-        <activity
-            android:name="com.example.test.info.PackageInfoActivity"
-            android:label="@string/app_name" 
-            android:theme="@style/cust_theme"
-			>
-           
-        </activity>  
-
-        <activity
-            android:name="com.example.test.info.FrameWorkSourceActivity"
-            android:label="@string/app_name" 
-            android:theme="@style/cust_theme"
-			>
-              <intent-filter>
+            android:screenOrientation="portrait" >
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>            
-        </activity>  
-        
-        
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.test.check.Check"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.test.FaceDetect"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.test.check.GSensor"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.test.check.touch.TSP_Bound_Grid_Mode"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.test.check.touch.TSP_Dot_Mode"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.test.check.touch.TSP_Grid_Mode"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.test.mathod.PrintArray"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.test.info.LanguageInfo"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.test.info.PackageListActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.test.info.PackageInfoActivity"
+            android:label="@string/app_name"
+            android:theme="@style/cust_theme" >
+        </activity>
+        <activity
+            android:name="com.example.test.info.FrameWorkSourceActivity"
+            android:label="@string/app_name"
+            android:theme="@style/cust_theme" >
+        </activity>
         <activity
             android:name="com.example.test.info.PackageSourceActivity"
-            android:label="@string/app_name" 
-			>
-      
-        </activity>              
-         <activity
+            android:label="@string/app_name" >
+        </activity>
+        <activity
             android:name="com.example.test.tool.DPIvPX"
-            android:label="@string/app_name" 
-			>
-        </activity>         
-         
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>

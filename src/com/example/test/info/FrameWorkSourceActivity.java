@@ -6,17 +6,17 @@ import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.AsyncTaskLoader;
 import android.content.Intent;
-import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.content.res.Resources.NotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.NinePatchDrawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -31,6 +31,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,9 +55,10 @@ public class FrameWorkSourceActivity extends Activity implements
 	TextView selectInfo;
 	ArrayList<ImageItem> items;
 	ImageAdapter mAdapter;
+	ProgressBar  progressBar;
 	File appDir;
 	int selectNum = 0;
-
+	SaveTask saveTask;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -81,12 +83,16 @@ public class FrameWorkSourceActivity extends Activity implements
 		imageContainer = (ListView) this.findViewById(R.id.image_container);
 		imageInfo = (TextView) this.findViewById(R.id.image_info);
 		selectInfo = (TextView) this.findViewById(R.id.select_info);
-
+		progressBar = (ProgressBar) this.findViewById(R.id.progressBar);
+	
+				
 		mAdapter = new ImageAdapter();
 		imageContainer.setAdapter(mAdapter);
 		imageContainer.setOnItemClickListener(this);
 		imageContainer.setOnScrollListener(this);
-
+		
+		saveTask = new SaveTask();
+		
 
 
 	}
@@ -96,7 +102,7 @@ public class FrameWorkSourceActivity extends Activity implements
 	private void init() {
 
 		int id = 0;
-
+		items.clear();
 		for (id = 0; id < 0x1000; id++) {
 
 			try {
@@ -121,12 +127,29 @@ public class FrameWorkSourceActivity extends Activity implements
 			}
 
 		}
+
 		imageInfo.setText("Total Number:" + items.size());
 
 	}
 	
 
-	void updateSelect() {
+	void selectAll(boolean selectall) {
+		
+		if (selectall) {
+			
+			for (ImageItem data : items) {
+				data.setSeleted(true);
+			}
+		} else {
+			for (ImageItem data : items) {
+				data.setSeleted(false);
+			}
+		}
+		mAdapter.notifyDataSetChanged();
+		updateSelect();
+	}
+
+	void updateSelect(){
 		selectNum = 0;
 		for (ImageItem data : items) {
 			if (data.isSelect()) {
@@ -135,7 +158,7 @@ public class FrameWorkSourceActivity extends Activity implements
 		}
 		selectInfo.setText("Select Number:" + selectNum);
 	}
-
+	
 	private void scanSdCard(File file) {
 
 		Uri contentUri = Uri.fromFile(file);
@@ -144,9 +167,12 @@ public class FrameWorkSourceActivity extends Activity implements
 		this.sendBroadcast(mediaScanIntent);
 	}
 
+	@SuppressWarnings("unchecked")
 	@SuppressLint("ShowToast")
 	private void saveImages() {
-
+		if(selectNum < 1){
+			return;
+		}
 		if (!Environment.getExternalStorageState().equals(
 				Environment.MEDIA_MOUNTED)) {
 			Toast.makeText(this, "Can't found storage", 500).show();
@@ -170,31 +196,29 @@ public class FrameWorkSourceActivity extends Activity implements
 		if (!appDir.exists()) {
 			return;
 		}
-
-		for (ImageItem data : items) {
-			if (data.isSelect()) {
-				Drawable draw= data.getDrawable();
-				if(draw == null){
-					try{
-						draw = mRes.getDrawable(data.getid());
-					} catch (NotFoundException e) {
-						continue;
-					}
-				}
-				saveImage(draw, data.getName());
-			}
+		
+		if(saveTask.getStatus() != AsyncTask.Status .RUNNING){
+			saveTask.execute(items);
 		}
-
 	}
 
 	@SuppressLint("ShowToast")
 	private void saveImage(Drawable drawable, String name) {
-		Log.d(TAG, "save image:" + name);
+//		Log.d(TAG, "save image:" + name);
 
 		Bitmap bitmap;
 		bitmap = ImageUtil.drawableToBitmap(drawable);
-
-		File file = new File(appDir, name);
+		File file = null;
+		
+		if(drawable instanceof NinePatchDrawable){
+			file = new File(appDir, name+".9.png");
+		}else if(drawable instanceof BitmapDrawable){
+			file = new File(appDir, name+".png");
+		}else{
+			return;
+		}
+		
+		
 		if (bitmap != null) {
 			try {
 				ImageUtil.saveBitmap(bitmap, file);
@@ -210,6 +234,13 @@ public class FrameWorkSourceActivity extends Activity implements
 
 	}
 
+	void releaseDrawable(Drawable drawable){
+		drawable.setCallback(null);
+		if(drawable instanceof BitmapDrawable){
+			((BitmapDrawable)drawable).getBitmap().recycle();
+			drawable = null;
+		}
+	}
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
@@ -234,13 +265,16 @@ public class FrameWorkSourceActivity extends Activity implements
 		// TODO Auto-generated method stub
 		super.onStart();
 		init();
-		updateSelect();
+		selectAll(false);
 	}
 
 	@Override
 	protected void onStop() {
 		// TODO Auto-generated method stub
 		super.onStop();
+		if(saveTask.getStatus() == AsyncTask.Status .RUNNING){
+			saveTask.cancel(true);
+		}
 	}
 
 	@Override
@@ -249,18 +283,7 @@ public class FrameWorkSourceActivity extends Activity implements
 		int id = v.getId();
 		switch (id) {
 		case R.id.select_all:
-			if (selectNum == 0) {
-				for (ImageItem data : items) {
-					data.setSeleted(true);
-				}
-			} else {
-				for (ImageItem data : items) {
-					data.setSeleted(false);
-				}
-			}
-			mAdapter.notifyDataSetChanged();
-			updateSelect();
-
+			selectAll(selectNum==0);
 			break;
 		case R.id.bt_pull:
 			pullButton.post(new Runnable() {
@@ -277,6 +300,58 @@ public class FrameWorkSourceActivity extends Activity implements
 		}
 	}
 
+	
+	class SaveTask extends AsyncTask<ArrayList<ImageItem>, Integer, Integer>{
+
+		@Override
+		protected Integer doInBackground(ArrayList<ImageItem>... params) {
+			// TODO Auto-generated method stub
+			int num=0;
+			for (ImageItem data : params[0]) {
+				if (data.isSelect()) {
+					num++;
+					Drawable draw= data.getDrawable();
+					if(draw == null){
+						try{
+							draw = mRes.getDrawable(data.getid());
+						} catch (NotFoundException e) {
+							continue;
+						}
+					}
+					saveImage(draw, data.getName());
+					releaseDrawable(draw);
+					publishProgress(num);
+				}
+			}
+			return num;
+		}
+		@Override  
+	    protected void onPreExecute() {  
+			allButton.setClickable(false);
+			imageContainer.setEnabled(false);
+			progressBar.setProgress(0);
+			progressBar.setVisibility(View.VISIBLE);
+	    }
+		@Override
+		protected void onProgressUpdate(Integer... values) {
+			// TODO Auto-generated method stub
+//			Log.d(TAG, "onProgressUpdate "+values[0]);
+			int progress= (int) (1.0f*values[0]/selectNum*100);
+			progressBar.setProgress(progress);
+			selectInfo.setText(progress+"%");
+		} 
+		
+		@Override
+	     protected void onPostExecute(Integer result) {
+			allButton.setClickable(true);
+			progressBar.setVisibility(View.INVISIBLE);
+			imageContainer.setEnabled(true);
+			selectAll(false);
+	     }
+		
+		
+		
+	}
 	class ImageAdapter extends BaseAdapter {
 
 		@Override
@@ -321,43 +396,15 @@ public class FrameWorkSourceActivity extends Activity implements
 			view.setSelect(item.isSelect());
 			return view;
 			
-//			ImageItem item = getItem(position);
-//			ViewHolder holder;
-//			if(convertView != null){
-//				holder=(ViewHolder) convertView.getTag();
-//			}else{
-//				convertView = View.inflate(getApplicationContext(),R.layout.image_item, null);
-//				holder = new ViewHolder();
-//				holder.icon = (ImageView) convertView.findViewById(R.id.id_icon);
-//				holder.text = (TextView) convertView.findViewById(R.id.id_name);
-//				holder.selectView = convertView.findViewById(R.id.id_select);
-//				convertView.setTag(holder);
-//			}
-//		
-//			Drawable draw ;
-//			try{
-//				draw = mRes.getDrawable(item.getid());
-//				holder.icon.setImageDrawable(draw);
-//			} catch (NotFoundException e) {
-//				
-//			}
-//			holder.text.setText(item.getName());
-//			
-//			
-//			return convertView;
-			
 		}
 
-		class ViewHolder {
-			  TextView text;
-			  ImageView icon;
-			  View      selectView;
-		}
+
 	}
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		// TODO Auto-generated method stub
+		
 		ImageItemView view = (ImageItemView) arg1;
 		ImageItem data = mAdapter.getItem(arg2);
 		if (data.isSelect()) {
@@ -369,8 +416,12 @@ public class FrameWorkSourceActivity extends Activity implements
 		}
 
 		updateSelect();
+	
+
 	}
 
+	
+	
 	@Override
 	public void onScroll(AbsListView view, int firstVisibleItem,
 			int visibleItemCount, int totalItemCount) {

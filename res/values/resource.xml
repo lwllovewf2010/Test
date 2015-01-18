@@ -4,4 +4,7 @@
     <color name="tw_button_back">#0199ac</color>
     <color name="tw_action_bar_back_press">#0000ff</color>
     <color name="cyan">#00ffff</color>
+    <color name="yellow">#aaffff00</color> 
+    <color name="process_bg">#019965</color>   
+    <color name="process">#ffffd300</color>     
 </resources>

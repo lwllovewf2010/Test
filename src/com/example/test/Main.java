@@ -10,53 +10,43 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.test.check.Check;
 import com.example.test.info.FrameWorkSourceActivity;
 import com.example.test.info.LanguageInfo;
 import com.example.test.info.PackageListActivity;
 import com.example.test.mathod.PrintArray;
 import com.example.test.tool.DPIvPX;
-import com.example.test.touch.TSP_Bound_Grid_Mode;
-import com.example.test.touch.TSP_Dot_Mode;
-import com.example.test.touch.TSP_Grid_Mode;
 
 public class Main extends Activity {
 
 	ListView listView = null;
 	ArrayList<String> list = new ArrayList<String>();;
-	
-	Class[] classes = {
-			GSensor.class,
-			TSP_Bound_Grid_Mode.class,
-			TSP_Dot_Mode.class,
-			TSP_Grid_Mode.class,
-			FaceDetect.class,
-			PrintArray.class,
-			LanguageInfo.class,
-			PackageListActivity.class,
-			FrameWorkSourceActivity.class,
-			DPIvPX.class
-			
+
+	Class[] classes = { Check.class, FaceDetect.class, PrintArray.class,
+			LanguageInfo.class, PackageListActivity.class,
+			FrameWorkSourceActivity.class, DPIvPX.class
+
 	};
-	
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.main_activity);
-	
-		
-		for(Class cls:classes){
+
+		for (Class cls : classes) {
 			list.add(cls.getSimpleName());
 		}
-		listView = (ListView)this.findViewById(R.id.list);
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1 , list);
-		
+		listView = (ListView) this.findViewById(R.id.list);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1, list);
+
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(clicklistener);
 
 	}
-	AdapterView.OnItemClickListener clicklistener = new AdapterView.OnItemClickListener(){
+
+	AdapterView.OnItemClickListener clicklistener = new AdapterView.OnItemClickListener() {
 
 		@Override
 		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
@@ -66,11 +56,9 @@ public class Main extends Activity {
 			intent.setClass(getApplication(), classes[arg2]);
 			Main.this.startActivity(intent);
 		}
-		
-	};
-	
 
-	
+	};
+
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
@@ -100,5 +88,5 @@ public class Main extends Activity {
 		// TODO Auto-generated method stub
 		super.onStop();
 	}
-	
+
 }

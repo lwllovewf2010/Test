@@ -22,8 +22,18 @@
         <FrameLayout
             android:layout_width="fill_parent"
             android:layout_height="35dp"
-            android:background="#019965" >
+            android:background="@color/process_bg" >
 
+			<ProgressBar  
+		        android:id="@+id/progressBar" 
+			    android:layout_width="fill_parent"
+            	android:layout_height="35dp"
+		    	style="?android:attr/progressBarStyleHorizontal" 
+		    	android:progressDrawable="@drawable/progress_horizontal"
+		    	android:max="100" 
+		   	 	android:progress="0" 
+
+	     	/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
@@ -67,7 +77,8 @@
                 style="@style/ButtonStyle"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:text="Next Page" />
+                android:text="Next Page" 
+                android:enabled="false"/>
 
             <Button
                 android:id="@+id/bt_pull"

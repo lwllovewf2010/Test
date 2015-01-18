@@ -1,6 +1,7 @@
 package com.example.test.view;
 
 import android.content.Context;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -15,6 +16,7 @@ public class ImageItemView extends FrameLayout {
 	ImageView iconView;
 	TextView  nameView;
 	View      selectView;
+	Drawable  drawable;
 	public ImageItemView(Context context) {
 		this(context, null);
 		// TODO Auto-generated constructor stub
@@ -42,8 +44,20 @@ public class ImageItemView extends FrameLayout {
 		nameView.setText(name);
 	}
 	
+	private void releaseDrawable(Drawable drawable){
+		drawable.setCallback(null);
+		if(drawable instanceof BitmapDrawable){
+			((BitmapDrawable)drawable).getBitmap().recycle();
+			drawable = null;
+		}
+	}
+	
 	public void setIcon(Drawable draw){
+		if(drawable != null){
+			releaseDrawable(drawable);
+		}
 		iconView.setImageDrawable(draw);
+		
 	}
 	public void setSelect(boolean selected){
 		if(selected){
