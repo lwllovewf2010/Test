@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.test"
+    package="com.allen.test"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -27,7 +27,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.test.Main"
+            android:name="com.allen.test.Main"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -37,59 +37,59 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.test.check.Check"
+            android:name="com.allen.test.check.Check"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.example.test.FaceDetect"
+            android:name="com.allen.test.FaceDetect"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.example.test.check.GSensor"
+            android:name="com.allen.test.check.GSensor"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.example.test.check.touch.TSP_Bound_Grid_Mode"
+            android:name="com.allen.test.check.touch.TSP_Bound_Grid_Mode"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.example.test.check.touch.TSP_Dot_Mode"
+            android:name="com.allen.test.check.touch.TSP_Dot_Mode"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.example.test.check.touch.TSP_Grid_Mode"
+            android:name="com.allen.test.check.touch.TSP_Grid_Mode"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.example.test.mathod.PrintArray"
+            android:name="com.allen.test.mathod.PrintArray"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.example.test.info.LanguageInfo"
+            android:name="com.allen.test.info.LanguageInfo"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.example.test.info.PackageListActivity"
+            android:name="com.allen.test.info.PackageListActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.example.test.info.PackageInfoActivity"
+            android:name="com.allen.test.info.PackageInfoActivity"
             android:label="@string/app_name"
             android:theme="@style/cust_theme" >
         </activity>
         <activity
-            android:name="com.example.test.info.FrameWorkSourceActivity"
+            android:name="com.allen.test.info.FrameWorkSourceActivity"
             android:label="@string/app_name"
             android:theme="@style/cust_theme" >
         </activity>
         <activity
-            android:name="com.example.test.info.PackageSourceActivity"
+            android:name="com.allen.test.info.PackageSourceActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.example.test.tool.DPIvPX"
+            android:name="com.allen.test.tool.DPIvPX"
             android:label="@string/app_name" >
         </activity>
     </application>
