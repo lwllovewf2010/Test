@@ -11,21 +11,21 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.allen.test.check.Check;
-import com.allen.test.info.FrameWorkSourceActivity;
-import com.allen.test.info.LanguageInfo;
-import com.allen.test.info.PackageListActivity;
-import com.allen.test.mathod.PrintArray;
-import com.allen.test.tool.DPIvPX;
+import com.allen.test.info.Info;
+import com.allen.test.mathod.Method;
+import com.allen.test.tool.Tool;
 
 public class Main extends Activity {
 
 	ListView listView = null;
 	ArrayList<String> list = new ArrayList<String>();;
 
-	Class[] classes = { Check.class, FaceDetect.class, PrintArray.class,
-			LanguageInfo.class, PackageListActivity.class,
-			FrameWorkSourceActivity.class, DPIvPX.class
-
+	Class[] classes = { 
+			Check.class, 
+			FaceDetect.class, 
+			Method.class,
+			Info.class,
+			Tool.class,
 	};
 
 	@Override

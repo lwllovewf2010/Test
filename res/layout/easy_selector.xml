@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:id="@+id/root"
+     android:orientation="vertical"
+     android:layout_width="fill_parent"
+     android:layout_height="fill_parent">
+	<FrameLayout    
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" 
+	    >    
+	    <com.allen.test.tool.selector.SelectorBGView 
+	        android:id="@+id/selector"
+			android:layout_width="match_parent"
+		    android:layout_height="wrap_content" 
+		    android:src="@drawable/bg_mask"
+	     />	
+	     
+	    <!--     
+	    <com.allen.test.view.SelectorView 
+			android:layout_width="match_parent"
+		    android:layout_height="wrap_content" 
+		    android:src="@drawable/mask"
+	     />
+	     --> 
+	    
+	    <ImageView 
+	        android:id="@+id/launcher"
+			android:layout_width="wrap_content"
+		    android:layout_height="wrap_content" 
+		    android:layout_gravity="center"
+		    android:src="@drawable/button"
+		  
+	        />
+	</FrameLayout>
+
+</LinearLayout>

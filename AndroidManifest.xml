@@ -30,21 +30,38 @@
             android:name="com.allen.test.Main"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
+            <!--  
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
+              
+        <activity
+            android:name="com.allen.test.FaceDetect"
+            android:label="@string/app_name" >
+        </activity>
+        
+        
+ 		<!--******************* Check  *****************************-->
         <activity
             android:name="com.allen.test.check.Check"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
+        
+        
         <activity
-            android:name="com.allen.test.FaceDetect"
-            android:label="@string/app_name" >
-        </activity>
+            android:name="com.allen.test.check.LedCheck"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+        </activity> 
+        <activity
+            android:name="com.allen.test.check.LcdDot"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+        </activity>         
         <activity
             android:name="com.allen.test.check.GSensor"
             android:label="@string/app_name"
@@ -62,8 +79,25 @@
             android:name="com.allen.test.check.touch.TSP_Grid_Mode"
             android:label="@string/app_name" >
         </activity>
+        
+        
+        <!--******************* Mathod  *****************************-->
+        <activity
+            android:name="com.allen.test.mathod.Method"
+            android:label="@string/app_name" >
+        </activity>
         <activity
             android:name="com.allen.test.mathod.PrintArray"
+            android:label="@string/app_name" >
+        </activity>
+         <activity
+            android:name="com.allen.test.mathod.MagicSquare"
+            android:label="@string/app_name" >
+        </activity>       
+        
+         <!--******************* Info  *****************************-->
+        <activity
+            android:name="com.allen.test.info.Info"
             android:label="@string/app_name" >
         </activity>
         <activity
@@ -89,9 +123,71 @@
             android:label="@string/app_name" >
         </activity>
         <activity
+            android:name="com.allen.test.info.DisplayInfo"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.allen.test.info.SystemInfo"
+            android:label="@string/app_name" >
+        </activity>        
+        
+        
+        <!--******************* Tool  *****************************-->
+        
+        <activity
+            android:name="com.allen.test.tool.Tool"
+            android:label="@string/app_name" >
+        </activity>
+        
+        <activity
+            android:name="com.allen.test.tool.selector.EasySelector"
+            android:label="@string/app_name" >
+                        <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+         <activity
+            android:name="com.allen.test.tool.VirtulEvent"
+            android:label="@string/app_name" >
+        </activity>
+               
+         <activity
+            android:name="com.allen.test.tool.FlishLight"
+            android:label="@string/app_name" >
+        </activity>               
+        <activity
             android:name="com.allen.test.tool.DPIvPX"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name="com.allen.test.tool.SimCardHelper"
+            android:label="@string/app_name" >
+        </activity>         
+        <activity
+            android:name="com.allen.test.tool.GestureSettingActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.allen.test.tool.ScreenFilterSetting"
+            android:label="@string/app_name" >
+        </activity>                        
+          <activity
+            android:name="com.allen.test.tool.SecretCameraActicity"
+            android:label="@string/app_name" >
+        </activity> 
+        <activity
+            android:name="com.allen.test.tool.Compass"
+            android:label="@string/app_name" >
+        </activity>        
+          
+        <!--******************* provider  *****************************-->
+         <provider android:name="com.allen.test.data.SelectorProvider" 
+			android:authorities="com.allen.test.data.SelectorData"
+			android:exported="true"></provider>
+        
     </application>
 
 </manifest>

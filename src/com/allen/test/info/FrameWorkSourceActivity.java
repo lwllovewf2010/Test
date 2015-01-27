@@ -234,8 +234,7 @@ public class FrameWorkSourceActivity extends Activity implements
 	}
 
 	void releaseDrawable(Drawable drawable){
-		drawable.setCallback(null);
-		if(drawable instanceof BitmapDrawable){
+		if(drawable.getCallback()!= null && drawable instanceof BitmapDrawable){
 			((BitmapDrawable)drawable).getBitmap().recycle();
 			drawable = null;
 		}

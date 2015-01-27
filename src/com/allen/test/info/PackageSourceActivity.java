@@ -239,8 +239,9 @@ public class PackageSourceActivity extends Activity implements OnClickListener, 
 	}
 	
 	void releaseDrawable(Drawable drawable){
-		drawable.setCallback(null);
-		if(drawable instanceof BitmapDrawable){
+		
+		if(drawable.getCallback()!= null &&
+				drawable instanceof BitmapDrawable){
 			((BitmapDrawable)drawable).getBitmap().recycle();
 			drawable = null;
 		}

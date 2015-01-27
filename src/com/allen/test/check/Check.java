@@ -21,6 +21,8 @@ public class Check extends Activity {
 	ArrayList<String> list = new ArrayList<String>();;
 	
 	Class[] classes = {
+			LcdDot.class,
+			LedCheck.class,
 			GSensor.class,
 			TSP_Bound_Grid_Mode.class,
 			TSP_Dot_Mode.class,

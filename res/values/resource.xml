@@ -6,5 +6,15 @@
     <color name="cyan">#00ffff</color>
     <color name="yellow">#aaffff00</color> 
     <color name="process_bg">#019965</color>   
-    <color name="process">#ffffd300</color>     
+    <color name="process">#ffffd300</color>    
+    <dimen name="menu_textsize">18dp</dimen> 
+    <dimen name="small_circle">120dp</dimen> 
+    
+    <string-array name="default_menu">
+        <item>餐厅 1 </item>
+        <item>餐厅 2 </item>
+        <item>餐厅 3 </item>
+        <item>餐厅 4 </item>
+        
+    </string-array>
 </resources>

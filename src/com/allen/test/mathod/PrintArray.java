@@ -23,7 +23,9 @@ public class PrintArray extends Activity{
 		
 		ArrayPrinter ap= new ArrayPrinter(4,4,p);
 		
-		mPrint.setText("\n"+ap.printArray()+ap.printEastern()+ap.printClockWise());
+		mPrint.setText("\n"+"The Array:\n"+ap.printArray()+
+				"printEastern:\n"+ap.printEastern()+
+				"printClockWise:\n"+ap.printClockWise());
 	}
 	
 
@@ -46,7 +48,7 @@ public class PrintArray extends Activity{
 			Array = array;
 		}
 		
-		void printUp(){
+		private void printUp(){
 			for(int i=0;i<rowCount;i++){
 				row--;
 				sb.append( Array[row][col]+" ");
@@ -54,7 +56,7 @@ public class PrintArray extends Activity{
 			colCount--;
 		
 		}
-		void printDown(){
+		private void printDown(){
 		
 			for(int i=0;i<rowCount;i++){
 				row++;
@@ -64,7 +66,7 @@ public class PrintArray extends Activity{
 			
 
 		}
-		void printLeft(){
+		private void printLeft(){
 			
 			for(int i=0;i<colCount;i++){
 				col--;
@@ -74,7 +76,7 @@ public class PrintArray extends Activity{
 			
 		}
 		
-		void printRight(){
+		private void printRight(){
 			
 			for(int i=0;i<colCount;i++){
 				col++;
@@ -85,7 +87,7 @@ public class PrintArray extends Activity{
 		
 		
 		
-		String printEastern(){
+		public String printEastern(){
 			col=0;
 			row=-1;
 			rowCount= ROW;
@@ -102,7 +104,7 @@ public class PrintArray extends Activity{
 			return sb.toString();	
 		}
 
-		String printClockWise(){
+		public String printClockWise(){
 			col=-1;
 			row=0;
 			rowCount= ROW;
@@ -119,7 +121,7 @@ public class PrintArray extends Activity{
 			return sb.toString();	
 		}
 		
-		String printArray(){
+		public String printArray(){
 			col=0;
 			row=0;
 			sb.delete(0, sb.length());
