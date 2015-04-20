@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.allen.test.R;
+import com.allen.test.tool.platlogo.PlatLogoActivity;
 import com.allen.test.tool.selector.EasySelector;
 
 public class Tool extends Activity {
@@ -27,7 +28,8 @@ public class Tool extends Activity {
 			SecretCameraActicity.class,
 			SimCardHelper.class,
 			Compass.class,
-			FlishLight.class,
+			FlashLight.class,
+			PlatLogoActivity.class,
 	};
 	
 	

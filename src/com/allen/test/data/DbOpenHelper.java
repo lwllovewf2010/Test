@@ -9,14 +9,11 @@ import com.allen.test.R;
 public class DbOpenHelper extends SQLiteOpenHelper {
 
 	Context mContext = null;
-	String mName = null;
-	int mVersion=2;
+	
 	public DbOpenHelper(Context context, String name, int version) {
 		super(context, name, null, version);
 		// TODO Auto-generated constructor stub
 		mContext = context;
-		mName = name;
-		mVersion = version;
 	}
 
 	@Override
@@ -52,9 +49,12 @@ public class DbOpenHelper extends SQLiteOpenHelper {
 	}
 
 	@Override
-	public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {
+	public void onUpgrade(SQLiteDatabase db, int arg1, int arg2) {
 		// TODO Auto-generated method stub
+        db.execSQL("DROP TABLE IF EXISTS " + SelectorData.DataColumns.TBL_NAME);
 
+        // Recreates the database with a new version
+        onCreate(db);
 	}
 
 }

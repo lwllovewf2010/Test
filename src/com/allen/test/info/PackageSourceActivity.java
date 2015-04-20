@@ -217,7 +217,7 @@ public class PackageSourceActivity extends Activity implements OnClickListener, 
 		}else if(drawable instanceof BitmapDrawable){
 			file = new File(appDir, name+".png");
 		}else{
-			return;
+			file = new File(appDir, name+".png");
 		}
 		
 		

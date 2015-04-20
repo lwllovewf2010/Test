@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.net.Uri;
 
 public class SelectorProvider extends ContentProvider {
-
+	DbOpenHelper mOpenHelper;
 	@Override
 	public int delete(Uri uri, String selection, String[] selectionArgs) {
 		// TODO Auto-generated method stub
@@ -28,7 +28,8 @@ public class SelectorProvider extends ContentProvider {
 	@Override
 	public boolean onCreate() {
 		// TODO Auto-generated method stub
-		return false;
+		mOpenHelper = new DbOpenHelper(getContext(), SelectorData.DB_NAME,SelectorData.VERSON);
+		return true;
 	}
 
 	@Override
