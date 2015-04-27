@@ -13,10 +13,13 @@
     </style>
 
     <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
+    <style name="TestTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
-    
+     <style name="TestTheme.NoTitle" parent="AppBaseTheme">
+        <item name="android:windowNoTitle">true</item>
+    </style> 
+      
     <style name="CustomWindowTitleBackground">  
        <item name="android:background">#016679</item>  
 	</style>

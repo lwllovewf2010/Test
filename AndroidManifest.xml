@@ -26,7 +26,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/TestTheme" >
         <activity
             android:name="com.allen.test.Main"
             android:label="@string/app_name"
@@ -169,9 +169,15 @@
         </activity>
                
          <activity
-            android:name="com.allen.test.tool.FlashLight"
+            android:name="com.allen.test.tool.flashlight.FlashLight"
+            android:theme="@style/TestTheme.NoTitle"
             android:label="@string/app_name" >
-        </activity>               
+        </activity>    
+        <service
+            android:name="com.allen.test.tool.flashlight.FlashLightService"
+            android:label="@string/app_name" >
+        </service> 
+                   
         <activity
             android:name="com.allen.test.tool.DPIvPX"
             android:label="@string/app_name" >

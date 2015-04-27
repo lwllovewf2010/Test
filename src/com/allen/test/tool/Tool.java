@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.allen.test.R;
+import com.allen.test.tool.flashlight.FlashLight;
 import com.allen.test.tool.platlogo.PlatLogoActivity;
 import com.allen.test.tool.selector.EasySelector;
 
